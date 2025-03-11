@@ -1,0 +1,11 @@
+<button
+  [class]="btnClass"
+  [disabled]="isDisabled"
+  type="button"
+  (click)="onClick()"
+>
+  @if (icon) {
+    <fa-icon [icon]="icon"></fa-icon>
+  }
+  {{ text }}
+</button>

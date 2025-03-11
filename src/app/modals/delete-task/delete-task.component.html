@@ -1,0 +1,25 @@
+<h2 mat-dialog-title class="text-center mt-4 font-bold">Confirm Deletion</h2>
+<mat-dialog-content class="text-center">
+  <p>Are you sure you want to delete "{{ data.task.title }}"?</p>
+
+<div class="flex justify-center gap-4 mt-4">
+  <app-button
+    [text]="'Cancel'"
+    [btnClass]="'bg-gray-300 px-4 py-2 rounded cursor-pointer'"
+    (handleClick)="onCancel()"
+  >
+  </app-button>
+
+  <app-button
+    [text]="'Delete'"
+    [btnClass]="'bg-red-500 text-white px-4 py-2 rounded cursor-pointer'"
+    (handleClick)="onConfirm()"
+  >
+  </app-button>
+</div>
+
+
+
+</mat-dialog-content>
+
+

@@ -1,0 +1,46 @@
+<h2 mat-dialog-title class="text-center mt-4 font-bold">Edit Task</h2>
+<mat-dialog-content class="text-center">
+  <form [formGroup]="editTaskForm">
+    <div class="flex flex-col gap-4">
+      <label>Title</label>
+      <input
+        type="text"
+        class="border rounded px-2 py-1"
+        formControlName="title"
+      />
+
+      <label>Due Date</label>
+      <input
+        type="date"
+        class="border rounded px-2 py-1"
+        formControlName="dueDate"
+      />
+
+      <label>Priority</label>
+      <select class="border rounded px-2 py-1" formControlName="priority">
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+    </div>
+
+    <div class="flex justify-center gap-4 mt-9">
+      <button
+        mat-button
+        (click)="onCancel()"
+        class="bg-gray-300 px-4 py-2 rounded"
+      >
+        Cancel
+      </button>
+      <button
+        mat-button
+        type="submit"
+        (click)="onSave()"
+        class="bg-blue-500 text-white px-4 py-2 rounded"
+        [disabled]="editTaskForm.invalid"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>

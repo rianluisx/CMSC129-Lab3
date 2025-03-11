@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "id": "88f1",
+      "title": "Bakal Damang",
+      "priority": "Medium",
+      "dueDate": "2025-03-27",
+      "dateAdded": "2025-03-11T13:50:58.024Z"
+    },
+    {
+      "id": "3161",
+      "title": "Magsuka sa bangs",
+      "priority": "Low",
+      "dueDate": "2025-03-14",
+      "dateAdded": "2025-03-11T13:49:10.239Z"
+    },
+    {
+      "id": "f8d3",
+      "title": "Suga apoy",
+      "priority": "High",
+      "dueDate": "2025-03-14",
+      "dateAdded": "2025-03-11T13:50:45.548Z"
+    }
+  ]
+}
