@@ -5,14 +5,14 @@
 <div class="flex justify-center gap-4 mt-4">
   <app-button
     [text]="'Cancel'"
-    [btnClass]="'bg-gray-300 px-4 py-2 rounded cursor-pointer'"
+    [btnClass]="'bg-gray-300 px-4 py-2 rounded cursor-pointer hover:bg-gray-400 transition-all'"
     (handleClick)="onCancel()"
   >
   </app-button>
 
   <app-button
     [text]="'Delete'"
-    [btnClass]="'bg-red-500 text-white px-4 py-2 rounded cursor-pointer'"
+    [btnClass]="'bg-red-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-red-700 transition-all'"
     (handleClick)="onConfirm()"
   >
   </app-button>

@@ -12,7 +12,8 @@
       "title": "Magsuka sa bangs",
       "priority": "Low",
       "dueDate": "2025-03-14",
-      "dateAdded": "2025-03-11T13:49:10.239Z"
+      "dateAdded": "2025-03-11T13:49:10.239Z",
+      "status": false
     },
     {
       "id": "f8d3",
@@ -20,6 +21,14 @@
       "priority": "High",
       "dueDate": "2025-03-14",
       "dateAdded": "2025-03-11T13:50:45.548Z"
+    },
+    {
+      "id": "e249",
+      "title": "Kain kamote",
+      "priority": "Medium",
+      "dueDate": "2025-03-13",
+      "dateAdded": "2025-03-11T13:55:41.869Z",
+      "status": false
     }
   ]
 }

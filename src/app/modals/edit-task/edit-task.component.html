@@ -28,7 +28,7 @@
       <button
         mat-button
         (click)="onCancel()"
-        class="bg-gray-300 px-4 py-2 rounded"
+        class="bg-gray-300 px-4 py-2 rounded cursor-pointer hover:bg-gray-400 transition-all"
       >
         Cancel
       </button>
@@ -36,7 +36,7 @@
         mat-button
         type="submit"
         (click)="onSave()"
-        class="bg-blue-500 text-white px-4 py-2 rounded"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition-all cursor-pointer"
         [disabled]="editTaskForm.invalid"
       >
         Save
