@@ -104,14 +104,14 @@
 
       <div class="flex space-x-3">
         <app-button
-          [btnClass]="'text-blue-500 hover:text-blue-700 flex items-center'"
+          [btnClass]="'text-blue-500 hover:text-blue-700 flex items-center cursor-pointer'"
           [icon]="faEdit"
           (handleClick)="openEditDialog(task)"
         >
         </app-button>
 
         <app-button
-          [btnClass]="'text-red-500 hover:text-red-700 flex items-center'"
+          [btnClass]="'text-red-500 hover:text-red-700 flex items-center cursor-pointer'"
           [icon]="faTrash"
           (handleClick)="openDeleteDialog(task)"
         >
