@@ -2,11 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MatDialogRef,
-  MAT_DIALOG_DATA,
   MatDialogContent,
 } from '@angular/material/dialog';
 import { TaskService } from '../../services/task.service';
-import { Task } from '../../interfaces/task';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -27,6 +25,7 @@ export class AddTaskComponent {
       title: ['', Validators.required],
       priority: ['Medium', Validators.required],
       dueDate: ['', Validators.required],
+      dueTime: ['', Validators.required],
     });
   }
 
@@ -36,6 +35,7 @@ export class AddTaskComponent {
 
   onAdd(): void {
     if (this.addTaskForm.valid) {
+      
       const newTask = {
         ...this.addTaskForm.value,
         dateAdded: new Date().toISOString(), 

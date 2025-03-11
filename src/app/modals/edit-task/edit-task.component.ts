@@ -24,8 +24,8 @@ export class EditTaskComponent {
       title: [data.task.title, Validators.required],
       priority: [data.task.priority, Validators.required],
       dueDate: [data.task.dueDate, Validators.required],
-      dateAdded: [data.task.dateAdded, Validators.required]
-      ,
+      dueTime: ['', Validators.required],
+      dateAdded: [data.task.dateAdded, Validators.required],
     });
   }
 

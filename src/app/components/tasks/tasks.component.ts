@@ -40,7 +40,9 @@ export class TasksComponent {
           new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime()
         );
       } else if (this.sortBy === 'dueDate') {
-        return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+        const dateA = new Date(`${a.dueDate} ${a.dueTime}`);
+        const dateB = new Date(`${b.dueDate} ${b.dueTime}`);
+        return dateA.getTime() - dateB.getTime();
       } else if (this.sortBy === 'priority') {
         const priorityOrder: Record<'High' | 'Medium' | 'Low', number> = {
           High: 1,
@@ -70,6 +72,7 @@ export class TasksComponent {
       },
     });
   }
+
   changeSorting(criteria: string) {
     this.sortBy = criteria;
   }
