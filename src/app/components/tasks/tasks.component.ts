@@ -91,6 +91,7 @@ export class TasksComponent {
         this.tasks = this.tasks.map((t) =>
           t.id === wasEdited.id ? wasEdited : t
         );
+        console.log("Edited");
       }
     });
   }
@@ -105,6 +106,7 @@ export class TasksComponent {
       if (wasDeleted) {
         this.lastDeletedTask = task;
         this.tasks = this.tasks.filter((t) => t.id !== task.id);
+        console.log("Deleted!");
         this.toggleToast();
       } else {
         console.log('Cancelled deleting');
@@ -118,6 +120,7 @@ export class TasksComponent {
     dialogRef.afterClosed().subscribe((newTaskAdded) => {
       if (newTaskAdded) {
         this.tasks.push(newTaskAdded);
+        console.log('Added')
       }
     });
   }
@@ -133,12 +136,15 @@ export class TasksComponent {
         next: (restoredTask) => {
           this.tasks.push(restoredTask);
           this.lastDeletedTask = null;
+          console.log("Restored!");
           this.visible.set(false);
         },
         error: (err) => {
           console.error('Error restoring task:', err);
         },
       });
+    } else{
+      console.log('Unable to restore')
     }
   }
 }

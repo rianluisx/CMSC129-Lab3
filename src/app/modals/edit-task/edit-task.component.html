@@ -8,6 +8,12 @@
         class="border rounded px-2 py-1"
         formControlName="title"
       />
+      @if (submitted && editTaskForm.get('title')?.invalid) {
+      <div class="text-red-500 text-sm">
+        @if (editTaskForm.get('title')?.errors?.['required']) {
+        <span>Title is required.</span> }
+      </div>
+      }
 
       <label>Due Date</label>
       <input
@@ -15,6 +21,9 @@
         class="border rounded px-2 py-1"
         formControlName="dueDate"
       />
+      @if (submitted && editTaskForm.get('dueDate')?.invalid) {
+      <div class="text-red-500 text-sm">Due date is required.</div>
+      }
 
       <label>Due Time</label>
       <input
@@ -22,6 +31,9 @@
         class="border rounded px-2 py-1"
         formControlName="dueTime"
       />
+      @if (submitted && editTaskForm.get('dueTime')?.invalid) {
+      <div class="text-red-500 text-sm">Due time is required.</div>
+      }
 
       <label>Priority</label>
       <select class="border rounded px-2 py-1" formControlName="priority">
@@ -44,7 +56,6 @@
         type="submit"
         (click)="onSave()"
         class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition-all cursor-pointer"
-        [disabled]="editTaskForm.invalid"
       >
         Save
       </button>

@@ -1,6 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA , MatDialogContent} from '@angular/material/dialog';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatDialogContent,
+} from '@angular/material/dialog';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../interfaces/task';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class EditTaskComponent {
   editTaskForm: FormGroup;
+  submitted: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,11 +34,18 @@ export class EditTaskComponent {
     });
   }
 
+  get title() {
+    return this.editTaskForm.get('title');
+  }
+
   onCancel(): void {
     this.dialogRef.close(false);
   }
 
   onSave(): void {
+    console.log('test');
+    this.submitted = true;
+
     if (this.editTaskForm.valid) {
       const updatedTask = {
         ...this.data.task,
@@ -48,6 +60,9 @@ export class EditTaskComponent {
         },
         error: (err) => console.error('Error updating task:', err),
       });
+    } else {
+      this.editTaskForm.markAllAsTouched();
+
     }
   }
 }

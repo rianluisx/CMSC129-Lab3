@@ -36,8 +36,6 @@ export class AddTaskComponent {
     return this.addTaskForm.get('title');
   }
 
-  
-
   onAdd(): void {
     this.submitted = true;
 
