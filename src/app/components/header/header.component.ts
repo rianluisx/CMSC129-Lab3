@@ -13,7 +13,7 @@ import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-header',
-  imports: [FontAwesomeModule, ButtonComponent, MatDialogModule],
+  imports: [FontAwesomeModule, MatDialogModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

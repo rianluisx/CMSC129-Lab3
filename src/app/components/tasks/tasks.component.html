@@ -1,3 +1,29 @@
+@if (visible()){
+<c-toaster
+  [placement]="placement"
+  class="fixed bottom-5 left-1/2 transform -translate-x-1/2 w-full max-w-sm"
+>
+  <c-toast
+    [visible]="visible()"
+    class="bg-gray-800 text-white rounded-lg shadow-lg p-4 flex items-center justify-between"
+  >
+
+      <c-toast-body class="text-center">
+        {{ lastDeletedTask?.title }} was deleted.
+        <button
+          (click)="undoDelete()"
+          class="ml-2 text-blue-400 hover:text-blue-300 font-semibold"
+        >
+          Undo
+        </button>
+      </c-toast-body>
+
+  </c-toast>
+</c-toaster>
+
+
+}
+
 <div class="p-4">
   <div class="flex justify-center items-center pb-5">
     <app-button
@@ -61,7 +87,7 @@
         <div class="{{ task.status ? 'line-through text-gray-400' : '' }}">
           <h3 class="text-lg font-semibold">{{ task.title }}</h3>
           <p class="text-sm text-gray-500">Due Date: {{ task.dueDate }}</p>
-          <p class="text-sm text-gray-500">Due Time: {{ task.dueTime}}</p>
+          <p class="text-sm text-gray-500">Due Time: {{ task.dueTime }}</p>
           <p
             class="text-xs font-bold {{
               task.priority === 'High'

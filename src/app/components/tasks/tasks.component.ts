@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Task } from '../../interfaces/task';
 import { TaskService } from '../../services/task.service';
 import { faEdit, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -8,26 +8,29 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DeleteTaskComponent } from '../../modals/delete-task/delete-task.component';
 import { EditTaskComponent } from '../../modals/edit-task/edit-task.component';
 import { AddTaskComponent } from '../../modals/add-task/add-task.component';
+import { ToasterPlacement, ToastModule } from '@coreui/angular';
 
 @Component({
   selector: 'app-tasks',
-  imports: [FontAwesomeModule, ButtonComponent, MatDialogModule],
+  imports: [FontAwesomeModule, MatDialogModule, ButtonComponent, ToastModule],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
+  constructor(private taskService: TaskService) {}
+  placement = ToasterPlacement.BottomCenter;
   isFetching: boolean = true;
   tasks: Task[] = [];
-
   faEdit = faEdit;
   faTrash = faTrash;
   faPlus = faPlus;
+  visible = signal(false);
+
+  lastDeletedTask: Task | null = null;
 
   sortBy: string = 'dateAdded';
 
   readonly dialog = inject(MatDialog);
-
-  constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
     this.taskService.getTask().subscribe((tasks) => (this.tasks = tasks));
@@ -100,7 +103,9 @@ export class TasksComponent {
 
     dialogRef.afterClosed().subscribe((wasDeleted) => {
       if (wasDeleted) {
+        this.lastDeletedTask = task;
         this.tasks = this.tasks.filter((t) => t.id !== task.id);
+        this.toggleToast();
       } else {
         console.log('Cancelled deleting');
       }
@@ -115,5 +120,25 @@ export class TasksComponent {
         this.tasks.push(newTaskAdded);
       }
     });
+  }
+
+  toggleToast() {
+    this.visible.set(true);
+    setTimeout(() => this.visible.set(false), 10000);
+  }
+
+  undoDelete() {
+    if (this.lastDeletedTask) {
+      this.taskService.undoDelete(this.lastDeletedTask).subscribe({
+        next: (restoredTask) => {
+          this.tasks.push(restoredTask);
+          this.lastDeletedTask = null;
+          this.visible.set(false);
+        },
+        error: (err) => {
+          console.error('Error restoring task:', err);
+        },
+      });
+    }
   }
 }

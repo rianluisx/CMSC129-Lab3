@@ -22,8 +22,6 @@ export class TaskService {
   }
 
   editTask(task: Task): Observable<Task> {
- 
-
     return this.http.put<Task>(`${this.apiUrl}/${task.id}`, task, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
@@ -37,5 +35,11 @@ export class TaskService {
 
   deleteTask(task: Task): Observable<Task> {
     return this.http.delete<Task>(`${this.apiUrl}/${task.id}`);
+  }
+
+  undoDelete(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiUrl, task, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
   }
 }

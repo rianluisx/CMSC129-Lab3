@@ -1,13 +1,19 @@
-<h2 mat-dialog-title class="text-center mt-4 font-bold">Edit Task</h2>
+<h2 mat-dialog-title class="text-center mt-4 font-bold">Add Task</h2>
 <mat-dialog-content class="text-center">
   <form [formGroup]="addTaskForm">
     <div class="flex flex-col gap-4">
-      <label>Title</label>
+      <label>What would you like to do?</label>
       <input
         type="text"
         class="border rounded px-2 py-1"
         formControlName="title"
+    
       />
+      @if (submitted && addTaskForm.get('title')?.invalid) {
+        <div class="text-red-500 text-sm">
+          @if (addTaskForm.get('title')?.errors?.['required']) { <span>Title is required.</span> }
+        </div>
+      }
 
       <label>Due Date</label>
       <input
@@ -15,6 +21,9 @@
         class="border rounded px-2 py-1"
         formControlName="dueDate"
       />
+      @if (submitted && addTaskForm.get('dueDate')?.invalid) {
+        <div class="text-red-500 text-sm">Due date is required.</div>
+      }
 
       <label>Due Time</label>
       <input
@@ -22,6 +31,9 @@
         class="border rounded px-2 py-1"
         formControlName="dueTime"
       />
+      @if (submitted && addTaskForm.get('dueTime')?.invalid) {
+        <div class="text-red-500 text-sm">Due time is required.</div>
+      }
 
       <label>Priority</label>
       <select class="border rounded px-2 py-1" formControlName="priority">
@@ -35,7 +47,7 @@
       <button
         mat-button
         (click)="onCancel()"
-        class="bg-gray-300 px-4 py-2 rounded"
+        class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-500 hover:text-white cursor-pointer transition-all"
       >
         Cancel
       </button>
@@ -44,7 +56,6 @@
         type="submit"
         (click)="onAdd()"
         class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 cursor-pointer transition-all"
-        [disabled]="addTaskForm.invalid"
       >
         Add
       </button>

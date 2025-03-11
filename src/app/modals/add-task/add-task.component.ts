@@ -1,9 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  MatDialogRef,
-  MatDialogContent,
-} from '@angular/material/dialog';
+import { MatDialogRef, MatDialogContent } from '@angular/material/dialog';
 import { TaskService } from '../../services/task.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -15,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AddTaskComponent {
   addTaskForm: FormGroup;
+
+  submitted: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,12 +32,19 @@ export class AddTaskComponent {
     this.dialogRef.close(false);
   }
 
+  get title() {
+    return this.addTaskForm.get('title');
+  }
+
+  
+
   onAdd(): void {
+    this.submitted = true;
+
     if (this.addTaskForm.valid) {
-      
       const newTask = {
         ...this.addTaskForm.value,
-        dateAdded: new Date().toISOString(), 
+        dateAdded: new Date().toISOString(),
       };
 
       this.taskService.addTask(newTask).subscribe({
@@ -48,6 +54,8 @@ export class AddTaskComponent {
         },
         error: (err) => console.error('Error adding task:', err),
       });
+    } else {
+      this.addTaskForm.markAllAsTouched();
     }
   }
 }
